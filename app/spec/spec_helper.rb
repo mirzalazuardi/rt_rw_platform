@@ -14,6 +14,11 @@ DatabaseCleaner.allow_remote_database_url = true if ENV['DATABASE_URL'].start_wi
 
 require_relative '../app/app'
 
+Sequel.extension :migration
+Sequel::Migrator.run(DB, File.expand_path('../db/migrations', __dir__))
+
+require_relative '../config/models'
+
 RSpec.configure do |config|
   config.include Rack::Test::Methods
 

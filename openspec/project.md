@@ -95,6 +95,22 @@ Never force-push `main`.
   on SQLite.
 - Do not add a feature without a spec file in `spec/`.
 
+## Letter Types (`letter_type`)
+
+Valid values for the `letter_type` column in `letter_requests` and `numbering_configs`:
+
+| Nilai | Template | Keterangan |
+|---|---|---|
+| `ktp` | `templates/surat_pengantar_ktp.md` | Pengantar pembuatan/perpanjangan KTP |
+| `kk` | `templates/surat_pengantar_kk.md` | Pengantar pembuatan/perubahan KK |
+| `domisili` | `templates/surat_keterangan_domisili.md` | Keterangan domisili/tempat tinggal |
+| `sktm` | `templates/surat_keterangan_tidak_mampu.md` | Keterangan tidak mampu (ekonomi) |
+| `pindah` | `templates/surat_pindah.md` | Keterangan pindah tempat tinggal |
+
+Add a CHECK constraint or model validation when new types are introduced.
+`sktm` and `pindah` require a Sequel migration adding a `CHECK` constraint to
+`letter_requests.letter_type` once the table is created.
+
 ## Open Questions
 
 - Dukcapil API integration for KK auto-fill — Phase 2 only, skip in MVP.

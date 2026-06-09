@@ -11,6 +11,8 @@ oleh sistem RT/RW Platform untuk menghasilkan dokumen PDF melalui Go worker
 | `surat_pengantar_ktp.md` | `ktp` | Surat pengantar permohonan pembuatan/perpanjangan KTP |
 | `surat_pengantar_kk.md` | `kk` | Surat pengantar permohonan pembuatan/perubahan KK |
 | `surat_keterangan_domisili.md` | `domisili` | Surat keterangan tempat tinggal/domisili |
+| `surat_keterangan_tidak_mampu.md` | `sktm` | Surat keterangan tidak mampu secara ekonomi |
+| `surat_pindah.md` | `pindah` | Surat keterangan pindah tempat tinggal |
 
 ## Cara Kerja
 
@@ -51,6 +53,15 @@ Placeholder diisi oleh Ruby sebelum dikirim ke Go worker.
 | `{{nama_ketua_rt}}` | `officials.name` (role RT) | Nama Ketua RT |
 | `{{nama_ketua_rw}}` | `officials.name` (role RW) | Nama Ketua RW |
 | `{{tanda_tangan_digital}}` | VIDA Sign callback | Blok tanda tangan digital (disisipkan oleh Go worker) |
+
+### Placeholder Khusus
+
+Placeholder berikut hanya tersedia pada template tertentu:
+
+| Placeholder | Template | Sumber | Keterangan |
+|---|---|---|---|
+| `{{alamat_tujuan}}` | `surat_pindah` | `letter_requests` (field tambahan) | Alamat tujuan pindah |
+| `{{alasan_pindah}}` | `surat_pindah` | `letter_requests.reason` | Alasan kepindahan |
 
 ## Konvensi Penulisan Template
 

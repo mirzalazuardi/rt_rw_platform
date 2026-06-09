@@ -1,0 +1,37 @@
+service: rt-rw-platform
+
+image: your-registry/rt-rw-platform
+
+registry:
+  username: your-registry-username
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+servers:
+  web:
+    hosts:
+      - your-server-ip
+    options:
+      memory: 512m
+
+env:
+  clear:
+    DATABASE_URL: sqlite:///data/app.db
+    REDIS_URL: redis://rt-rw-platform-redis:6379/0
+    RACK_ENV: production
+    SESSION_SECRET: changeme-generate-with-openssl
+    TELEGRAM_BOT_TOKEN: changeme
+    TELEGRAM_BOT_SECRET: changeme
+    WORKER_ENQUEUE_URL: http://localhost:8080/enqueue
+    WORKER_SECRET: changeme
+
+accessories:
+  redis:
+    image: redis:7-alpine
+    host: your-server-ip
+    port: 6379
+    volumes:
+      - redis-data:/data

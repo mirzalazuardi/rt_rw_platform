@@ -1,7 +1,8 @@
 # Environment & secrets
 .env
-.env.test
 .env.local
+!.env.example
+!.env.test
 
 # Database
 *.db

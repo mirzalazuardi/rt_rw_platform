@@ -1,0 +1,32 @@
+# Environment & secrets
+.env
+.env.local
+!.env.example
+!.env.test
+
+# Database
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Temp & logs
+tmp/
+log/
+
+# Uploads
+public/uploads/
+
+# Go binaries
+worker/worker
+worker/cmd/worker/worker
+*.exe
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~

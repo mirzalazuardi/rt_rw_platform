@@ -4,6 +4,7 @@ require 'roda'
 require 'rodauth'
 require 'dotenv/load' if File.exist?(File.expand_path('../../.env', __dir__))
 require_relative '../config/database'
+require_relative '../routes/bot'
 
 class App < Roda
   plugin :json
@@ -30,6 +31,12 @@ class App < Roda
       rodauth.require_authentication
       r.get do
         'Dashboard OK'
+      end
+    end
+
+    r.on 'webhook' do
+      r.on 'telegram' do
+        BotRoutes.setup(r, self)
       end
     end
   end

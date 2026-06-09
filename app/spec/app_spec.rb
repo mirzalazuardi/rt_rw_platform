@@ -15,4 +15,13 @@ RSpec.describe App do
       expect(last_response.body).to eq('OK')
     end
   end
+
+  describe 'GET /dashboard' do
+    it 'redirects to /login when not authenticated' do
+      get '/dashboard'
+
+      expect(last_response.status).to eq(302)
+      expect(last_response.location).to include('/login')
+    end
+  end
 end

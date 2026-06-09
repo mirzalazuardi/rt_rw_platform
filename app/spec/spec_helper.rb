@@ -10,6 +10,8 @@ ENV['DATABASE_URL'] ||= 'sqlite://test.db'
 require 'rack/test'
 require 'database_cleaner-sequel'
 
+DatabaseCleaner.allow_remote_database_url = true if ENV['DATABASE_URL'].start_with?('sqlite')
+
 require_relative '../app/app'
 
 RSpec.configure do |config|

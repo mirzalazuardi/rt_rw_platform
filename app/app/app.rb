@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'dotenv/load' if File.exist?(File.expand_path('../../.env', __dir__))
+require_relative '../config/database'
 
 class App < Roda
   plugin :json
